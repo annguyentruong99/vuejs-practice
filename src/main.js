@@ -15,6 +15,9 @@ import {
     ElRow,
     ElCol,
     ElMenu,
+    ElMenuItem,
+    ElDivider,
+    ElAvatar,
 } from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
 
@@ -30,6 +33,9 @@ const components = [
     ElRow,
     ElCol,
     ElMenu,
+    ElMenuItem,
+    ElDivider,
+    ElAvatar,
 ];
 
 const app = createApp(App);
