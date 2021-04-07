@@ -5,43 +5,42 @@ const store = createStore({
     state: {
         isAuth: false,
         user: {},
-        status: ''
+        status: '',
     },
     mutations: {
-      authRequest(state) {
-        state.status = 'Loading'
-      },
+        authRequest(state) {
+            state.status = 'Loading';
+        },
 
-      logIn(state, user) {
-        state.isAuth = true
-        state.user = user
-        state.status = 'Success'
-      },
+        logIn(state, user) {
+            state.isAuth = true;
+            state.user = user;
+            state.status = 'Success';
+        },
 
-      authError(state) {
-        state.status = 'Error'
-      }
-
+        authError(state) {
+            state.status = 'Error';
+        },
     },
     actions: {
-      async logIn({commit}, ){
-        commit('authRequest')
-        await axios.get('https://jsonplaceholder.typicode.com/users')
-          .then((res) => {
-            commit('logIn', res.data[0])
-          })
-          .catch((err) => {
-            console.log(err)
-            commit('authError')
-          });
-      }
+        async logIn({ commit }) {
+            commit('authRequest');
+            await axios
+                .get('https://jsonplaceholder.typicode.com/users')
+                .then((res) => {
+                    commit('logIn', res.data);
+                })
+                .catch((err) => {
+                    console.log(err);
+                    commit('authError');
+                });
+        },
     },
     getters: {
-      authStatus: state => state.status,
-      isLoggedIn: state => state.isAuth,
-      user: state => state.user
+        authStatus: (state) => state.status,
+        isLoggedIn: (state) => state.isAuth,
+        user: (state) => state.user,
     },
 });
-
 
 export default store;

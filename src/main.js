@@ -18,6 +18,7 @@ import {
     ElMenuItem,
     ElDivider,
     ElAvatar,
+    ElInfiniteScroll,
 } from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
 
@@ -38,10 +39,16 @@ const components = [
     ElAvatar,
 ];
 
+const plugins = [ElInfiniteScroll];
+
 const app = createApp(App);
 
 components.forEach((component) => {
     app.component(component.name, component);
+});
+
+plugins.forEach((plugin) => {
+    app.use(plugin);
 });
 
 app.use(store).use(router);
