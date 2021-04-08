@@ -6,7 +6,7 @@
                     <el-avatar
                         src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
                     ></el-avatar>
-                    <span>An Nguyen</span>
+                    <span>{{ users[0].name }}</span>
                 </div>
                 <el-divider></el-divider>
                 <el-menu default-active="1" class="nav-menu">
@@ -40,6 +40,7 @@
         computed: {
             ...mapState({
                 isLoggedIn: (state) => state.isAuth,
+                users: (state) => state.users,
             }),
         },
     };
@@ -58,5 +59,10 @@
 
     .el-menu.nav-menu {
         border: 0;
+    }
+
+    .el-aside aside {
+        height: 100%;
+        position: fixed;
     }
 </style>

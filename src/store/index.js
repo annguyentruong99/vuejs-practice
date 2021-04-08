@@ -4,7 +4,7 @@ import { createStore } from 'vuex';
 const store = createStore({
     state: {
         isAuth: false,
-        user: {},
+        users: [],
         status: '',
     },
     mutations: {
@@ -14,12 +14,20 @@ const store = createStore({
 
         logIn(state, user) {
             state.isAuth = true;
-            state.user = user;
+            state.users = user;
             state.status = 'Success';
         },
 
         authError(state) {
             state.status = 'Error';
+        },
+
+        getUsers(state, user) {
+            state.users = user;
+        },
+
+        findUser(state, id) {
+            state.users = state.users.filter((user) => user.id === id);
         },
     },
     actions: {
@@ -35,11 +43,27 @@ const store = createStore({
                     commit('authError');
                 });
         },
+
+        async getUsers({ commit }, search) {
+            await axios
+                .get('https://jsonplaceholder.typicode.com/users')
+                .then((res) => {
+                    console.log('search', search);
+                    let data = res.data;
+                    if (search) {
+                        data = res.data.filter(
+                            (item) => item.id === parseInt(search)
+                        );
+                    }
+                    commit('getUsers', data);
+                })
+                .catch((err) => console.log(err));
+        },
     },
     getters: {
         authStatus: (state) => state.status,
         isLoggedIn: (state) => state.isAuth,
-        user: (state) => state.user,
+        user: (state) => state.users,
     },
 });
 

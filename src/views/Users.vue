@@ -1,7 +1,12 @@
 <template>
     <div class="users">
         <div class="user-list">
-            <h1>User List</h1>
+            <el-row>
+                <el-col :span="24">
+                    <h1>User List</h1>
+                </el-col>
+            </el-row>
+            <search-bar></search-bar>
             <ul>
                 <li v-for="user in users" :key="user.id">
                     <el-row>
@@ -31,12 +36,16 @@
 
 <script>
     import { mapState } from 'vuex';
+    import SearchBar from '../components/SearchBar.vue';
 
     export default {
         name: 'Home',
+        components: {
+            SearchBar,
+        },
         computed: {
             ...mapState({
-                users: (state) => state.user,
+                users: (state) => state.users,
             }),
         },
     };
@@ -62,9 +71,8 @@
         list-style-type: none;
         margin: 2rem;
         padding: 1rem;
-        border-style: solid;
+        border: 1px solid #dcdfe6;
         border-radius: 8px;
-        border-width: 0.5px;
     }
 
     .user-list li:hover {
