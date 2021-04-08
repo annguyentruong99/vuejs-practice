@@ -1,5 +1,13 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+    <div class="posts">
+        <el-row>
+            <el-col :span="24">
+                <h1>Post list</h1>
+            </el-col>
+        </el-row>
+
+        <el-row>
+            <el-col :span="24"></el-col>
+        </el-row>
+    </div>
 </template>

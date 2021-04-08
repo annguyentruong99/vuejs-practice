@@ -48,7 +48,6 @@ const store = createStore({
             await axios
                 .get('https://jsonplaceholder.typicode.com/users')
                 .then((res) => {
-                    console.log('search', search);
                     let data = res.data;
                     if (search) {
                         data = res.data.filter(

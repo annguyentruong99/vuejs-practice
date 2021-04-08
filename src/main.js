@@ -18,7 +18,7 @@ import {
     ElMenuItem,
     ElDivider,
     ElAvatar,
-    ElInfiniteScroll,
+    ElPopconfirm,
 } from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
 
@@ -39,7 +39,7 @@ const components = [
     ElAvatar,
 ];
 
-const plugins = [ElInfiniteScroll];
+const plugins = [ElPopconfirm];
 
 const app = createApp(App);
 

@@ -24,7 +24,9 @@
                         >
                         <el-col :span="4"
                             ><div class="details-button">
-                                <el-button>Details</el-button>
+                                <el-button @click="handleClick(user.id)"
+                                    >Details</el-button
+                                >
                             </div></el-col
                         >
                     </el-row>
@@ -36,6 +38,8 @@
 
 <script>
     import { mapState } from 'vuex';
+    import router from '../router';
+
     import SearchBar from '../components/SearchBar.vue';
 
     export default {
@@ -47,6 +51,11 @@
             ...mapState({
                 users: (state) => state.users,
             }),
+        },
+        methods: {
+            handleClick(id) {
+                router.push(`/user/${id}`);
+            },
         },
     };
 </script>
