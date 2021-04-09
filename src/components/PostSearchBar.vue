@@ -1,10 +1,10 @@
 <template>
-    <div class="users-search-bar">
+    <div class="posts-search-bar">
         <el-row :gutter="10">
             <el-col :span="18">
                 <el-input
                     v-model="searchInput"
-                    placeholder="Search user by User ID"
+                    placeholder="Search post by Post ID"
                     maxlength="1"
                     @change="handleSearch"
                 ></el-input>
@@ -21,7 +21,7 @@
     import store from '../store';
 
     export default {
-        name: 'UserSearchBar',
+        name: 'PostSearchBar',
         data() {
             return {
                 searchInput: '',
@@ -29,29 +29,29 @@
         },
         computed: {
             ...mapState({
-                users: (state) => state.users,
+                posts: (state) => state.posts,
             }),
         },
         methods: {
             handleSearch(value) {
                 this.searchInput = value;
             },
-            getUserList(search) {
-                store.dispatch('getUsers', search);
+            getPostList(search) {
+                store.dispatch('getPosts', search);
             },
             onSearch() {
                 const { searchInput } = this;
-                this.getUserList(searchInput);
+                this.getPostList(searchInput);
             },
         },
         mounted() {
-            this.getUserList();
+            this.getPostList();
         },
     };
 </script>
 
 <style scoped>
-    .users-search-bar {
+    .posts-search-bar {
         display: flex;
         flex-direction: row;
         margin-bottom: 30px;
