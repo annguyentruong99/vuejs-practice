@@ -2,36 +2,44 @@
     <div class="users">
         <div class="user-list">
             <el-row>
-                <el-col :span="24">
+                <el-col :span="12" :push="1">
                     <h1>User List</h1>
                 </el-col>
             </el-row>
-            <search-bar></search-bar>
-            <ul>
-                <li v-for="user in users" :key="user.id">
-                    <el-row>
-                        <el-col :span="2"
-                            ><div class="avatar">
-                                <el-avatar
-                                    src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
-                                ></el-avatar></div
-                        ></el-col>
-                        <el-col :span="18"
-                            ><div class="user-info">
-                                {{ user.username }} <br />
-                                {{ user.email }}
-                            </div></el-col
-                        >
-                        <el-col :span="4"
-                            ><div class="details-button">
-                                <el-button @click="handleClick(user.id)"
-                                    >Details</el-button
+            <el-row>
+                <el-col :span="12" :push="1">
+                    <user-search-bar></user-search-bar>
+                </el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="24" :push="1">
+                    <ul>
+                        <li v-for="user in users" :key="user.id">
+                            <el-row>
+                                <el-col :span="2"
+                                    ><div class="avatar">
+                                        <el-avatar
+                                            src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+                                        ></el-avatar></div
+                                ></el-col>
+                                <el-col :span="18"
+                                    ><div class="user-info">
+                                        {{ user.username }} <br />
+                                        {{ user.email }}
+                                    </div></el-col
                                 >
-                            </div></el-col
-                        >
-                    </el-row>
-                </li>
-            </ul>
+                                <el-col :span="4"
+                                    ><div class="details-button">
+                                        <el-button @click="handleClick(user.id)"
+                                            >Details</el-button
+                                        >
+                                    </div></el-col
+                                >
+                            </el-row>
+                        </li>
+                    </ul>
+                </el-col>
+            </el-row>
         </div>
     </div>
 </template>
@@ -40,12 +48,12 @@
     import { mapState } from 'vuex';
     import router from '../router';
 
-    import SearchBar from '../components/UserSearchBar.vue';
+    import UserSearchBar from '../components/UserSearchBar.vue';
 
     export default {
         name: 'Home',
         components: {
-            SearchBar,
+            UserSearchBar,
         },
         computed: {
             ...mapState({

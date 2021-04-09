@@ -1,13 +1,17 @@
 <template>
     <div class="posts">
         <el-row>
-            <el-col :span="24">
+            <el-col :span="12" :push="1">
                 <h1>Post list</h1>
             </el-col>
         </el-row>
-
+        <el-row>
+            <el-col :span="12" :push="1">
+                <post-search-bar></post-search-bar>
+            </el-col>
+        </el-row>
         <el-row :gutter="24">
-            <el-col v-for="post in posts" :key="post.id" :span="9" :push="3">
+            <el-col v-for="post in posts" :key="post.id" :span="10" :push="1">
                 <el-card shadow="hover" @click="handleClick(post.id)">
                     <div class="card-content">
                         <div class="thumbnail">
@@ -32,8 +36,13 @@
 
     import { mapState } from 'vuex';
 
+    import PostSearchBar from '../components/PostSearchBar.vue';
+
     export default {
         name: 'Posts',
+        components: {
+            PostSearchBar,
+        },
         created() {
             store.dispatch('getPosts');
         },

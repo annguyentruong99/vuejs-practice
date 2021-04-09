@@ -54,6 +54,9 @@
     .users-search-bar {
         display: flex;
         flex-direction: row;
-        margin-bottom: 30px;
+        align-items: center;
+        justify-items: center;
+        padding: 2rem;
+        margin: 0 32px 0 32px;
     }
 </style>
