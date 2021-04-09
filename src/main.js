@@ -19,6 +19,7 @@ import {
     ElDivider,
     ElAvatar,
     ElPopconfirm,
+    ElNotification,
 } from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
 
@@ -39,7 +40,7 @@ const components = [
     ElAvatar,
 ];
 
-const plugins = [ElPopconfirm];
+const plugins = [ElPopconfirm, ElNotification];
 
 const app = createApp(App);
 

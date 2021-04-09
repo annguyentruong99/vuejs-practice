@@ -64,10 +64,7 @@
         },
         methods: {
             handleLogIn() {
-                store
-                    .dispatch('logIn')
-                    .then(() => router.push('/'))
-                    .catch((err) => console.log(err));
+                store.dispatch('logIn').then(() => router.push('/'));
             },
         },
     };

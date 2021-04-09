@@ -55,6 +55,7 @@
                 iconColor="red"
                 title="Are you sure you want to delete this user?"
                 @cancel="handleCancel"
+                @confirm="handleDelete(dataSource.id)"
             >
                 <template #reference>
                     <el-button type="danger">Delete</el-button>
@@ -67,6 +68,7 @@
 <script>
     import axios from 'axios';
     import router from '../router';
+    import store from '../store';
 
     export default {
         name: 'UserDetail',
@@ -94,7 +96,18 @@
             handleCancel() {
                 router.push('/');
             },
-            handleDelete() {},
+            handleDelete(id) {
+                store
+                    .dispatch('deleteUser', id)
+                    .then(router.push('/'))
+                    .then(
+                        this.$notify({
+                            title: 'Success',
+                            message: 'User has been deleted!',
+                            type: 'success',
+                        })
+                    );
+            },
             handleUpdate() {},
         },
     };

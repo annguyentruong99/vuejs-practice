@@ -40,7 +40,7 @@
     import { mapState } from 'vuex';
     import router from '../router';
 
-    import SearchBar from '../components/SearchBar.vue';
+    import SearchBar from '../components/UserSearchBar.vue';
 
     export default {
         name: 'Home',

@@ -5,21 +5,12 @@ const store = createStore({
     state: {
         isAuth: false,
         users: [],
+        posts: [],
         status: '',
     },
     mutations: {
-        authRequest(state) {
-            state.status = 'Loading';
-        },
-
-        logIn(state, user) {
+        logIn(state) {
             state.isAuth = true;
-            state.users = user;
-            state.status = 'Success';
-        },
-
-        authError(state) {
-            state.status = 'Error';
         },
 
         getUsers(state, user) {
@@ -29,19 +20,22 @@ const store = createStore({
         findUser(state, id) {
             state.users = state.users.filter((user) => user.id === id);
         },
+
+        deleteUser(state, id) {
+            state.users = state.users.filter((user) => user.id !== id);
+        },
+
+        getPosts(state, post) {
+            state.posts = post;
+        },
     },
     actions: {
         async logIn({ commit }) {
-            commit('authRequest');
-            await axios
-                .get('https://jsonplaceholder.typicode.com/users')
-                .then((res) => {
-                    commit('logIn', res.data);
-                })
-                .catch((err) => {
-                    console.log(err);
-                    commit('authError');
-                });
+            try {
+                commit('logIn');
+            } catch (err) {
+                console.log(err);
+            }
         },
 
         async getUsers({ commit }, search) {
@@ -55,6 +49,22 @@ const store = createStore({
                         );
                     }
                     commit('getUsers', data);
+                })
+                .catch((err) => console.log(err));
+        },
+
+        async deleteUser({ commit }, id) {
+            await axios
+                .delete(`https://jsonplaceholder.typicode.com/users/${id}`)
+                .then(commit('deleteUser', id))
+                .catch((err) => console.log(err));
+        },
+
+        async getPosts({ commit }) {
+            await axios
+                .get('https://jsonplaceholder.typicode.com/posts')
+                .then((res) => {
+                    commit('getPosts', res.data);
                 })
                 .catch((err) => console.log(err));
         },
