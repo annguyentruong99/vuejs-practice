@@ -1,5 +1,5 @@
 <template>
-    <div class="search-bar">
+    <div class="users-search-bar">
         <el-row :gutter="10">
             <el-col :span="18">
                 <el-input
@@ -21,7 +21,7 @@
     import store from '../store';
 
     export default {
-        name: 'SearchBar',
+        name: 'UserSearchBar',
         data() {
             return {
                 searchInput: '',
@@ -51,7 +51,7 @@
 </script>
 
 <style scoped>
-    .search-bar {
+    .users-search-bar {
         display: flex;
         flex-direction: row;
         align-items: center;

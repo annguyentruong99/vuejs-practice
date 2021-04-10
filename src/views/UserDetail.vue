@@ -1,10 +1,10 @@
 <template>
     <div class="user-details">
         <div class="form-header">
-            <h1>User {{ $route.params.id }}</h1>
+            <h1>User {{ id }}</h1>
         </div>
         <div class="user-inputs">
-            <el-form ref="this.data" label-width="120px">
+            <el-form ref="userForm" label-width="120px">
                 <el-form-item label="Full Name">
                     <el-input
                         placeholder="Full Name"
@@ -43,6 +43,7 @@
                 cancelButtonText="No, Thanks"
                 title="Are you sure you want to update this user?"
                 @cancel="handleCancel"
+                @confirm="handleUpdate(dataSource)"
             >
                 <template #reference>
                     <el-button type="primary">Update</el-button>
@@ -55,6 +56,7 @@
                 iconColor="red"
                 title="Are you sure you want to delete this user?"
                 @cancel="handleCancel"
+                @confirm="handleDelete(dataSource.id)"
             >
                 <template #reference>
                     <el-button type="danger">Delete</el-button>
@@ -67,6 +69,7 @@
 <script>
     import axios from 'axios';
     import router from '../router';
+    import store from '../store';
 
     export default {
         name: 'UserDetail',
@@ -94,8 +97,40 @@
             handleCancel() {
                 router.push('/');
             },
-            handleDelete() {},
-            handleUpdate() {},
+
+            handleDelete(id) {
+                store
+                    .dispatch('deleteUser', id)
+                    .then(router.push('/'))
+                    .then(
+                        this.$notify({
+                            title: 'Success',
+                            message: 'User has been deleted!',
+                            type: 'success',
+                        })
+                    );
+            },
+
+            handleUpdate(data) {
+                store
+                    .dispatch('updateUser', data)
+                    .then(router.push('/'))
+                    .then(
+                        this.$notify({
+                            title: 'Success',
+                            message: 'User has been updated!',
+                            type: 'success',
+                        })
+                    )
+                    .catch((err) => {
+                        console.log(err);
+                        this.$notify({
+                            title: 'Failed',
+                            message: 'User update failed!',
+                            type: 'error',
+                        });
+                    });
+            },
         },
     };
 </script>
