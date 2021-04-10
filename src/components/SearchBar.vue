@@ -5,7 +5,7 @@
                 <el-input
                     v-model="searchInput"
                     placeholder="Search user by User ID"
-                    maxlength="1"
+                    maxlength="2"
                     @change="handleSearch"
                 ></el-input>
             </el-col>
